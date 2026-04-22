@@ -1,0 +1,9 @@
+# Netlify: raiz do site publica tudo; "/" entrega a apresentação (não depende de index.html)
+[build]
+  publish = "."
+
+# Evita tela vazia ao acessar https://seu-site.netlify.app/
+[[redirects]]
+  from = "/"
+  to = "/inter.html"
+  status = 200
