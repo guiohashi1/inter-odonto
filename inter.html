@@ -1703,6 +1703,36 @@
       text-shadow: 0 6px 40px rgba(0, 0, 0, 0.8);
     }
 
+    /* Variantes para frases mais longas — mantêm o mesmo DNA visual */
+    .quote-stage__title--md {
+      font-size: clamp(1.8rem, 5vw, 3.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .quote-stage__title--sm {
+      font-size: clamp(1.4rem, 3.4vw, 2.6rem);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      max-width: 28ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Aspas decorativas para os blocos longos (tom editorial) */
+    .quote-stage__title--sm::before,
+    .quote-stage__title--sm::after {
+      content: '"';
+      color: var(--netflix-red);
+      opacity: 0.55;
+      font-family: 'Playfair Display', 'Inter', serif;
+      font-weight: 700;
+    }
+
+    .quote-stage__title--sm::before { margin-right: 0.3rem; }
+    .quote-stage__title--sm::after { margin-left: 0.3rem; }
+
     .quote-stage__accent {
       color: var(--netflix-red);
       text-shadow: 0 0 30px rgba(229, 9, 20, 0.55);
@@ -1800,6 +1830,191 @@
       border-radius: 50%;
       background: rgba(0, 168, 225, 0.85);
       box-shadow: 0 0 10px rgba(0, 168, 225, 0.5);
+    }
+
+    /* —— Slide Autoexame (reformulado) — foto emoldurada em estilo Netflix —— */
+    .slide--autoexame {
+      padding: 0 !important;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .autoexame-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1rem, 3vh, 1.8rem);
+      padding: clamp(1.2rem, 4vh, 2.4rem) clamp(1rem, 4vw, 2.5rem);
+      background:
+        radial-gradient(ellipse at 50% 40%, rgba(229, 9, 20, 0.18), transparent 55%),
+        radial-gradient(ellipse at 50% 110%, rgba(229, 9, 20, 0.12), transparent 60%),
+        linear-gradient(180deg, #0a0000 0%, #000 55%, #000 100%);
+      overflow: hidden;
+    }
+
+    /* Textura de scanlines sutil para clima cinematográfico */
+    .autoexame-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 3px);
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Wordmark gigante "N" de fundo (marca d'água sutil Netflix) */
+    .autoexame-stage::after {
+      content: "N";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: clamp(12rem, 32vw, 28rem);
+      color: rgba(229, 9, 20, 0.05);
+      letter-spacing: -0.05em;
+      line-height: 0.8;
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+    }
+
+    .autoexame-stage__frame {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      width: min(1080px, 88vw);
+      max-height: 70vh;
+      aspect-ratio: 5 / 2;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0a0a0a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 40px 90px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(229, 9, 20, 0.12),
+        0 0 60px rgba(229, 9, 20, 0.18);
+      isolation: isolate;
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
+    }
+
+    .autoexame-stage__frame:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 50px 110px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(229, 9, 20, 0.2),
+        0 0 90px rgba(229, 9, 20, 0.28);
+    }
+
+    .autoexame-stage__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.03);
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .autoexame-stage__frame:hover .autoexame-stage__image {
+      transform: scale(1.02);
+    }
+
+    /* Vinheta dentro do frame, emulando a abertura de um episódio Netflix */
+    .autoexame-stage__frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, transparent 18%, transparent 78%, rgba(0, 0, 0, 0.55) 100%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.25) 0%, transparent 12%, transparent 88%, rgba(0, 0, 0, 0.25) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .autoexame-stage__badge {
+      position: absolute;
+      top: 0.9rem;
+      left: 0.9rem;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0.32rem 0.7rem;
+      border-radius: 3px;
+      background: var(--netflix-red);
+      box-shadow: 0 10px 22px rgba(229, 9, 20, 0.45);
+    }
+
+    .autoexame-stage__rec {
+      position: absolute;
+      top: 0.9rem;
+      right: 0.9rem;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0.28rem 0.55rem 0.28rem 0.7rem;
+      border-radius: 3px;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .autoexame-stage__rec::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--netflix-red);
+      box-shadow: 0 0 10px var(--netflix-red);
+      animation: live-pulse 1.8s ease-in-out infinite;
+    }
+
+    .autoexame-stage__title {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 4.6vw, 3rem);
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 10px 40px rgba(0, 0, 0, 0.75);
+    }
+
+    @media (max-width: 860px) {
+      .autoexame-stage__frame {
+        aspect-ratio: 4 / 3;
+        width: 92vw;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .autoexame-stage__frame {
+        aspect-ratio: 3 / 4;
+      }
+      .autoexame-stage__badge {
+        font-size: 0.58rem;
+        letter-spacing: 0.16em;
+      }
     }
 
     .autoexame-grid {
@@ -3733,15 +3948,17 @@
 
     /* -- Player do vídeo -- */
     .tudum-player {
-      position: relative;
-      width: min(1100px, 92vw);
-      aspect-ratio: 16 / 9;
-      max-height: 86vh;
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      aspect-ratio: auto;
+      max-height: none;
       background: #000;
-      border-radius: 10px;
+      border-radius: 0;
       overflow: hidden;
-      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.85);
-      transform: scale(0.96);
+      box-shadow: none;
+      transform: scale(0.985);
       opacity: 0;
       transition: transform 0.45s ease, opacity 0.45s ease;
       z-index: 2;
@@ -3755,15 +3972,13 @@
     .tudum-player video {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       background: #000;
     }
 
-    /* Aspect-ratio vertical quando o vídeo é vertical */
-    .tudum-player.is-portrait {
-      width: auto;
-      height: min(86vh, 900px);
-      aspect-ratio: 9 / 16;
+    /* Quando o vídeo é vertical, evita corte extremo — mantém fullscreen com contain */
+    .tudum-player.is-portrait video {
+      object-fit: contain;
     }
 
     .tudum-close {
@@ -5483,6 +5698,331 @@
       font-weight: 800;
     }
 
+    /* ================================================================ */
+    /* =   Slide final — Créditos em estilo de fim de filme (Netflix) = */
+    /* ================================================================ */
+    .slide--credits {
+      padding: 0 !important;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .credits-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* Cortina de vinheta e brilho avermelhado suave no fundo */
+    .credits-stage__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 40%, rgba(229, 9, 20, 0.18), transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(229, 9, 20, 0.12), transparent 65%),
+        linear-gradient(180deg, #0a0000 0%, #000 55%, #000 100%);
+      z-index: 0;
+    }
+
+    .credits-stage__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 3px);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    /* Molduras pretas (letterbox) para dar a sensação cinematográfica */
+    .credits-stage__letterbox {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: clamp(32px, 5vh, 64px);
+      background: #000;
+      z-index: 5;
+      pointer-events: none;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .credits-stage__letterbox--top { top: 0; }
+    .credits-stage__letterbox--bottom { bottom: 0; }
+
+    /* Palco fullscreen que abriga o vídeo dos créditos */
+    .credits-stage__frame {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      max-height: none;
+      border-radius: 0;
+      overflow: hidden;
+      background: #050505;
+      border: none;
+      box-shadow: none;
+      isolation: isolate;
+    }
+
+    .credits-stage__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #000;
+      pointer-events: none;
+    }
+
+    /* Badge "EP. FINAL · CRÉDITOS" flutuando acima do frame */
+    .credits-stage__badge {
+      position: absolute;
+      top: clamp(1.1rem, 3vh, 2rem);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0.45rem 1rem;
+      border-radius: 4px;
+      background: var(--netflix-red);
+      box-shadow: 0 10px 26px rgba(229, 9, 20, 0.5);
+    }
+
+    .credits-stage__badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+      animation: live-pulse 1.8s ease-in-out infinite;
+    }
+
+    /* Rodapé com marca / assinatura de "uma produção extensionista" */
+    .credits-stage__signoff {
+      position: absolute;
+      bottom: clamp(1rem, 3vh, 2rem);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      white-space: nowrap;
+    }
+
+    .credits-stage__signoff strong {
+      color: #fff;
+      letter-spacing: 0.24em;
+      font-weight: 800;
+    }
+
+    .credits-stage__signoff em {
+      font-style: normal;
+      color: var(--netflix-red);
+      letter-spacing: 0.28em;
+      font-weight: 800;
+    }
+
+    .credits-stage__signoff::before,
+    .credits-stage__signoff::after {
+      content: '';
+      width: clamp(24px, 6vw, 64px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    }
+
+    /* Controles de áudio discretos, canto inferior direito do frame */
+    .credits-stage__controls {
+      position: absolute;
+      bottom: 0.9rem;
+      right: 1rem;
+      z-index: 7;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      pointer-events: auto;
+    }
+
+    .credits-stage__audio {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .credits-stage__audio:hover {
+      background: rgba(229, 9, 20, 0.2);
+      border-color: rgba(229, 9, 20, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .credits-stage__audio svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* Selo "REC" no topo esquerdo do frame, mantendo o DNA do trailer */
+    .credits-stage__rec {
+      position: absolute;
+      top: 0.9rem;
+      left: 1rem;
+      z-index: 7;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0.28rem 0.55rem 0.28rem 0.75rem;
+      border-radius: 3px;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(6px);
+    }
+
+    .credits-stage__rec::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--netflix-red);
+      box-shadow: 0 0 10px var(--netflix-red);
+      animation: live-pulse 1.8s ease-in-out infinite;
+    }
+
+    /* Texto "O Fim" que aparece por trás, reforçando o clima de final de filme */
+    .credits-stage__wordmark {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      z-index: 1;
+      pointer-events: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: clamp(6rem, 18vw, 14rem);
+      letter-spacing: -0.05em;
+      color: rgba(229, 9, 20, 0.06);
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    @media (max-width: 860px) {
+      .credits-stage__badge {
+        font-size: 0.64rem;
+        padding: 0.38rem 0.8rem;
+        letter-spacing: 0.24em;
+      }
+      .credits-stage__signoff {
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+      }
+      .credits-stage__signoff::before,
+      .credits-stage__signoff::after {
+        width: 18px;
+      }
+    }
+
+    /* —— Assinatura discreta do desenvolvedor —— */
+    .dev-credit {
+      position: absolute;
+      z-index: 4;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45em;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.72);
+      text-decoration: none;
+      pointer-events: auto;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(6px);
+      transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      user-select: none;
+    }
+
+    .dev-credit::before {
+      content: "Dev ·";
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 500;
+    }
+
+    .dev-credit:hover,
+    .dev-credit:focus-visible {
+      color: #fff;
+      background: rgba(229, 9, 20, 0.55);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .dev-credit:hover::before,
+    .dev-credit:focus-visible::before {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .dev-credit--home {
+      bottom: 0.9rem;
+      right: 1.1rem;
+    }
+
+    .dev-credit--credits {
+      bottom: 0.8rem;
+      right: 1.1rem;
+      z-index: 7;
+    }
+
+    @media (max-width: 640px) {
+      .dev-credit {
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        padding: 0.32rem 0.6rem;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -5644,6 +6184,10 @@
           </div>
         </div>
       </div>
+      <a class="dev-credit dev-credit--home"
+         href="https://instagram.com/guiohashi"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Desenvolvido por @guiohashi">@guiohashi</a>
     </section>
 
     <!-- Slide 2: O que é o câncer de boca? (Netflix · Detalhes do episódio) -->
@@ -5902,7 +6446,7 @@
               <span class="illust-card__ring" aria-hidden="true"></span>
               <span class="illust-card__icon">🍺</span>
             </div>
-            <h3 class="illust-card__title">Álcool</h3>
+            <h3 class="illust-card__title">Etilismo</h3>
             <p class="illust-card__desc">Efeito <strong>sinérgico</strong> com o tabaco, multiplicando o risco.</p>
           </article>
 
@@ -5956,7 +6500,7 @@
     <section class="slide slide--netflix slide--manejo" data-theme="netflix">
       <div class="slide-stage">
         <div class="nf-detail">
-          <div class="nf-detail__media nf-detail__media--plain" role="img" aria-label="Manejo terapêutico do câncer de boca" style="background-image: url('assets/MANEJO.png'); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="nf-detail__media nf-detail__media--plain" role="img" aria-label="Manejo terapêutico do câncer de boca" style="background-image: url('assets/manejo.jpeg'); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
           <div class="nf-detail__content">
             <div class="nf-tags">
               <span class="nf-tag nf-tag--red">Ep. 06</span>
@@ -6033,141 +6577,23 @@
       </div>
     </section>
 
-    <!-- Slide 10: Autoexame — passo a passo (Prime · prática guiada) -->
-    <section class="slide slide--prime" data-theme="prime">
-      <div class="slide-stage">
-        <div class="autoexame-intro">
-          <div class="autoexame-intro__text">
-            <div class="section-head">
-              <p class="section-head__kicker">Ep. 08 · Prática guiada</p>
-              <h2 class="section-head__title">Autoexame bucal: passo a passo</h2>
-              <p class="section-head__lead">
-                Diante do espelho, com boa iluminação, observe e palpe oito regiões da boca. O hábito leva poucos minutos e aumenta a chance de detectar alterações enquanto ainda são pequenas.
-              </p>
-            </div>
-          </div>
+    <!-- Slide 10: Autoexame — foto emoldurada em estilo Netflix -->
+    <section class="slide slide--netflix slide--autoexame" data-theme="netflix">
+      <div class="autoexame-stage">
+        <figure class="autoexame-stage__frame" role="img"
+                aria-label="Mosaico com oito cenas do autoexame bucal.">
+          <span class="autoexame-stage__badge">
+            <svg width="10" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3v18l4-8 4 8V3h-3l-2 5-2-5H6z"/></svg>
+            N SÉRIE · Ep. 08
+          </span>
+          <span class="autoexame-stage__rec">Rec · Autoexame</span>
 
-          <aside class="autoexame-hints" aria-label="O que observar durante o autoexame">
-            <div class="autoexame-hints__title">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-              Fique atento a
-            </div>
-            <ul>
-              <li>Feridas que <strong>não cicatrizam</strong> em até 15 dias.</li>
-              <li>Manchas <strong>brancas</strong> ou <strong>avermelhadas</strong> persistentes.</li>
-              <li>Nódulos, caroços ou áreas <strong>endurecidas</strong>.</li>
-              <li>Sangramentos sem causa aparente ou dor local.</li>
-            </ul>
-          </aside>
-        </div>
+          <img class="autoexame-stage__image"
+               src="assets/autoexame.jpeg"
+               alt="Oito etapas do autoexame bucal em um mosaico de fotos." />
+        </figure>
 
-        <div class="autoexame-grid" role="list">
-          <article class="autoexame-step" role="listitem">
-            <span class="autoexame-step__letter" aria-hidden="true">A</span>
-            <span class="autoexame-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48">
-                <path d="M10 28c2-4 6-6 14-6s12 2 14 6"/>
-                <path d="M14 28v4M20 28v4M26 28v4M32 28v4"/>
-                <path d="M8 24c4-6 10-9 16-9s12 3 16 9"/>
-              </svg>
-            </span>
-            <h3 class="autoexame-step__title">Gengiva e mucosa superiores</h3>
-            <p class="autoexame-step__desc">Levante o lábio superior e observe a gengiva e a mucosa acima dos dentes.</p>
-          </article>
-
-          <article class="autoexame-step" role="listitem">
-            <span class="autoexame-step__letter" aria-hidden="true">B</span>
-            <span class="autoexame-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48">
-                <path d="M10 22c4-3 10-4 14-4s10 1 14 4"/>
-                <path d="M10 22c3 6 9 10 14 10s11-4 14-10"/>
-                <path d="M18 30c2 1 4 1 6 1s4 0 6-1"/>
-              </svg>
-            </span>
-            <h3 class="autoexame-step__title">Lábios</h3>
-            <p class="autoexame-step__desc">Puxe o lábio inferior para baixo e examine face interna, borda e mucosa.</p>
-          </article>
-
-          <article class="autoexame-step" role="listitem">
-            <span class="autoexame-step__letter" aria-hidden="true">C</span>
-            <span class="autoexame-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48">
-                <path d="M8 22c6-5 14-7 22-7s10 2 12 4"/>
-                <path d="M8 22c4 6 10 10 22 10s10-3 12-6"/>
-                <path d="M34 18c3 2 5 4 6 6-1 2-3 4-6 5"/>
-              </svg>
-            </span>
-            <h3 class="autoexame-step__title">Mucosa jugal e gengiva posterior</h3>
-            <p class="autoexame-step__desc">Estique a bochecha com o dedo e observe a mucosa interna e a gengiva do fundo.</p>
-          </article>
-
-          <article class="autoexame-step" role="listitem">
-            <span class="autoexame-step__letter" aria-hidden="true">D</span>
-            <span class="autoexame-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48">
-                <path d="M10 24c3-2 8-3 14-3s11 1 14 3"/>
-                <path d="M10 24c0 4 4 8 14 8s14-4 14-8"/>
-                <path d="M14 26l2 5M20 27l1.5 5.5M27 27l-1.5 5.5M33 26l-2 5"/>
-              </svg>
-            </span>
-            <h3 class="autoexame-step__title">Vestíbulo e gengiva anterior</h3>
-            <p class="autoexame-step__desc">Afaste o lábio e avalie a gengiva frontal, o vestíbulo e a mucosa entre eles.</p>
-          </article>
-
-          <article class="autoexame-step" role="listitem">
-            <span class="autoexame-step__letter" aria-hidden="true">E</span>
-            <span class="autoexame-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48">
-                <path d="M8 32c4-10 10-15 16-15s12 5 16 15"/>
-                <path d="M14 32c2-6 5-9 10-9s8 3 10 9"/>
-                <path d="M22 22h4"/>
-              </svg>
-            </span>
-            <h3 class="autoexame-step__title">Palato duro</h3>
-            <p class="autoexame-step__desc">Incline a cabeça para trás e observe o céu da boca com auxílio do espelho.</p>
-          </article>
-
-          <article class="autoexame-step" role="listitem">
-            <span class="autoexame-step__letter" aria-hidden="true">F</span>
-            <span class="autoexame-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48">
-                <path d="M10 18c4 8 10 12 14 12s10-4 14-12"/>
-                <path d="M24 14v12"/>
-                <path d="M17 22c2 2 4 3 7 3s5-1 7-3"/>
-              </svg>
-            </span>
-            <h3 class="autoexame-step__title">Palato mole e região tonsilar</h3>
-            <p class="autoexame-step__desc">Diga “aaaa” e use uma espátula para visualizar o fundo da boca e as amígdalas.</p>
-          </article>
-
-          <article class="autoexame-step" role="listitem">
-            <span class="autoexame-step__letter" aria-hidden="true">G</span>
-            <span class="autoexame-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48">
-                <path d="M10 30c4-6 10-9 14-9s10 3 14 9"/>
-                <path d="M14 30c2-2 6-4 10-4s8 2 10 4"/>
-                <path d="M24 14v8"/>
-              </svg>
-            </span>
-            <h3 class="autoexame-step__title">Ventre da língua e soalho</h3>
-            <p class="autoexame-step__desc">Levante a ponta da língua até o céu da boca e observe a face inferior e o soalho.</p>
-          </article>
-
-          <article class="autoexame-step" role="listitem">
-            <span class="autoexame-step__letter" aria-hidden="true">H</span>
-            <span class="autoexame-step__icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48">
-                <path d="M14 14c2 6 4 12 4 18s-2 6-2 6"/>
-                <path d="M14 14c4 4 10 6 16 6s10-2 10-2"/>
-                <path d="M18 22c6 2 12 2 18 0"/>
-              </svg>
-            </span>
-            <h3 class="autoexame-step__title">Borda lateral da língua</h3>
-            <p class="autoexame-step__desc">Puxe a língua com uma gaze e inspecione as bordas laterais — área de maior risco.</p>
-          </article>
-        </div>
-
-        <p class="prime-source">(INCA, 2026 · Ministério da Saúde)</p>
+        <h2 class="autoexame-stage__title">Autoexame bucal</h2>
       </div>
     </section>
 
@@ -6192,92 +6618,6 @@
       </div>
     </section>
 
-    <!-- Slide 11: Metodologia — Comissões (HBO · Cast/Créditos) -->
-    <section class="slide slide--hbo" data-theme="hbo">
-      <div class="slide-stage">
-        <div class="platform-title">
-          <div class="platform-title__brand platform-title__brand--hbo">
-            <svg width="22" height="14" viewBox="0 0 44 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path fill="currentColor" d="M2 2h6v6.5h4V2h6v16h-6v-6h-4v6H2V2z"/>
-              <circle cx="30" cy="10" r="6" stroke="currentColor" stroke-width="2.2" fill="none"/>
-              <circle cx="38" cy="10" r="4" fill="currentColor"/>
-            </svg>
-            MAX ORIGINAL · CRÉDITOS DE ABERTURA
-          </div>
-          <p class="platform-title__kicker">Ep. 10 · Metodologia</p>
-          <h2 class="platform-title__main">Comissões</h2>
-          <p class="platform-title__sub">
-            Cada comissão é um núcleo do projeto, trabalhando em conjunto para a execução do Maio Vermelho.
-          </p>
-        </div>
-
-        <div class="cast-grid">
-          <article class="cast-card">
-            <span class="cast-card__order">S01 · E01</span>
-            <div class="cast-card__avatar">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M6 3h9l4 4v14H6V3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                <path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                <path d="M9 13h7M9 16h7M9 10h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="cast-card__role">Pesquisa & Dados</div>
-            <h3 class="cast-card__name">Comissão<br />Científica</h3>
-          </article>
-
-          <article class="cast-card">
-            <span class="cast-card__order">S01 · E02</span>
-            <div class="cast-card__avatar">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M3.5 12h17M12 3.5c2.5 2.5 4 5.5 4 8.5s-1.5 6-4 8.5c-2.5-2.5-4-5.5-4-8.5s1.5-6 4-8.5z" stroke="currentColor" stroke-width="1.6"/>
-              </svg>
-            </div>
-            <div class="cast-card__role">Comunidade</div>
-            <h3 class="cast-card__name">Comissão<br />de Extensão</h3>
-          </article>
-
-          <article class="cast-card">
-            <span class="cast-card__order">S01 · E03</span>
-            <div class="cast-card__avatar">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="3" y="6" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M17 10.5l4-2.5v8l-4-2.5v-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="cast-card__role">Produção Digital</div>
-            <h3 class="cast-card__name">Comissão<br />de Mídias</h3>
-          </article>
-
-          <article class="cast-card">
-            <span class="cast-card__order">S01 · E04</span>
-            <div class="cast-card__avatar">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M8 14c1 1.5 2.4 2.3 4 2.3s3-.8 4-2.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                <circle cx="9" cy="10" r="1" fill="currentColor"/>
-                <circle cx="15" cy="10" r="1" fill="currentColor"/>
-              </svg>
-            </div>
-            <div class="cast-card__role">Engajamento</div>
-            <h3 class="cast-card__name">Comissão<br />da Alegria</h3>
-          </article>
-
-          <article class="cast-card">
-            <span class="cast-card__order">S01 · E05</span>
-            <div class="cast-card__avatar">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M4 18h16M12 14V4M7 8l5-4 5 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="12" cy="14" r="1.4" fill="currentColor"/>
-              </svg>
-            </div>
-            <div class="cast-card__role">Palco Principal</div>
-            <h3 class="cast-card__name">Comissão de<br />Apresentação</h3>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <!-- Slide 12: Metodologia — Ética & Planejamento (Prime Video) -->
     <section class="slide slide--prime" data-theme="prime">
       <div class="slide-stage">
@@ -6287,7 +6627,7 @@
               <path d="M4 14c5 5 20 6 30 1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
               <path d="M28 11l6 1-2 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
-            PRIME ORIGINAL · DOCUMENTÁRIO CIENTÍFICO · Ep. 11
+            PRIME ORIGINAL · DOCUMENTÁRIO CIENTÍFICO · Ep. 10
           </div>
           <h2 class="platform-title__main">Metodologia</h2>
           <p class="platform-title__sub">
@@ -6370,6 +6710,92 @@
                 </span>
               </li>
             </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 13: Metodologia — Comissões (HBO · Cast/Créditos) -->
+    <section class="slide slide--hbo" data-theme="hbo">
+      <div class="slide-stage">
+        <div class="platform-title">
+          <div class="platform-title__brand platform-title__brand--hbo">
+            <svg width="22" height="14" viewBox="0 0 44 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path fill="currentColor" d="M2 2h6v6.5h4V2h6v16h-6v-6h-4v6H2V2z"/>
+              <circle cx="30" cy="10" r="6" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <circle cx="38" cy="10" r="4" fill="currentColor"/>
+            </svg>
+            MAX ORIGINAL · CRÉDITOS DE ABERTURA
+          </div>
+          <p class="platform-title__kicker">Ep. 11 · Metodologia</p>
+          <h2 class="platform-title__main">Comissões</h2>
+          <p class="platform-title__sub">
+            Cada comissão é um núcleo do projeto, trabalhando em conjunto para a execução do Maio Vermelho.
+          </p>
+        </div>
+
+        <div class="cast-grid">
+          <article class="cast-card">
+            <span class="cast-card__order">S01 · E01</span>
+            <div class="cast-card__avatar">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 3h9l4 4v14H6V3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M9 13h7M9 16h7M9 10h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="cast-card__role">Pesquisa & Dados</div>
+            <h3 class="cast-card__name">Comissão<br />Científica</h3>
+          </article>
+
+          <article class="cast-card">
+            <span class="cast-card__order">S01 · E02</span>
+            <div class="cast-card__avatar">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M3.5 12h17M12 3.5c2.5 2.5 4 5.5 4 8.5s-1.5 6-4 8.5c-2.5-2.5-4-5.5-4-8.5s1.5-6 4-8.5z" stroke="currentColor" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <div class="cast-card__role">Comunidade</div>
+            <h3 class="cast-card__name">Comissão<br />de Extensão</h3>
+          </article>
+
+          <article class="cast-card">
+            <span class="cast-card__order">S01 · E03</span>
+            <div class="cast-card__avatar">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="3" y="6" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M17 10.5l4-2.5v8l-4-2.5v-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cast-card__role">Produção Digital</div>
+            <h3 class="cast-card__name">Comissão<br />de Mídias</h3>
+          </article>
+
+          <article class="cast-card">
+            <span class="cast-card__order">S01 · E04</span>
+            <div class="cast-card__avatar">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M8 14c1 1.5 2.4 2.3 4 2.3s3-.8 4-2.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                <circle cx="15" cy="10" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="cast-card__role">Engajamento</div>
+            <h3 class="cast-card__name">Comissão<br />da Alegria</h3>
+          </article>
+
+          <article class="cast-card">
+            <span class="cast-card__order">S01 · E05</span>
+            <div class="cast-card__avatar">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 18h16M12 14V4M7 8l5-4 5 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="14" r="1.4" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="cast-card__role">Palco Principal</div>
+            <h3 class="cast-card__name">Comissão de<br />Apresentação</h3>
           </article>
         </div>
       </div>
@@ -6568,7 +6994,7 @@
                aria-label="Assistir trailer oficial da campanha Maio Vermelho">
             <video class="trailer-hero__bg" muted loop playsinline preload="metadata"
                    poster="assets/galeria-06.jpeg" aria-hidden="true">
-              <source src="assets/campanha.mp4" type="video/mp4" />
+              <source src="assets/campanha-certo.mp4" type="video/mp4" />
             </video>
             <span class="trailer-hero__rec">Rec · Trailer</span>
 
@@ -6682,7 +7108,7 @@
           </div>
           <h2 class="platform-title__main">Resultados da pesquisa</h2>
           <p class="platform-title__sub">
-            Durante a ação, um questionário estruturado foi aplicado para avaliar o nível de conhecimento da população sobre o câncer de boca — seus fatores de risco, sinais e práticas preventivas.
+            Durante a ação, um questionário estruturado foi aplicado para avaliar o nível de conhecimento da população sobre o câncer de boca: seus fatores de risco, sinais e práticas preventivas.
           </p>
         </div>
 
@@ -7214,17 +7640,56 @@
       </div>
     </section>
 
-    <!-- Slide 23: Frase de efeito — diagnóstico precoce (Netflix full-screen) -->
+    <!-- Slide 24.1: Frase de efeito · PT. 1 -->
     <section class="slide slide--netflix slide--quote" data-theme="netflix">
       <div class="quote-stage">
         <div class="quote-stage__bg" aria-hidden="true"></div>
         <div class="quote-stage__content">
-          <div class="quote-stage__badge">EP. 21 · MENSAGEM FINAL</div>
+          <div class="quote-stage__badge">EP. 21 · MENSAGEM FINAL · PT. 1</div>
           <h2 class="quote-stage__title">
             Diagnóstico precoce <span class="quote-stage__accent">salva</span>.
           </h2>
-          <p class="quote-stage__sub">Quanto mais cedo, melhor o prognóstico.</p>
           <p class="quote-stage__source">(INCA, 2026)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 24.2: Frase de efeito · PT. 2 -->
+    <section class="slide slide--netflix slide--quote" data-theme="netflix">
+      <div class="quote-stage">
+        <div class="quote-stage__bg" aria-hidden="true"></div>
+        <div class="quote-stage__content">
+          <div class="quote-stage__badge">EP. 21 · MENSAGEM FINAL · PT. 2</div>
+          <h2 class="quote-stage__title">
+            Quanto mais cedo, <span class="quote-stage__accent">melhor</span> o prognóstico.
+          </h2>
+          <p class="quote-stage__source">(INCA, 2026)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 24.3: Frase de efeito · PT. 3 (reflexão editorial) -->
+    <section class="slide slide--netflix slide--quote" data-theme="netflix">
+      <div class="quote-stage">
+        <div class="quote-stage__bg" aria-hidden="true"></div>
+        <div class="quote-stage__content">
+          <div class="quote-stage__badge">EP. 21 · MENSAGEM FINAL · PT. 3</div>
+          <h2 class="quote-stage__title quote-stage__title--sm">
+            O câncer de boca não começa apenas na célula &mdash; começa, muitas vezes, na <span class="quote-stage__accent">falta de informação</span>. E é justamente aí que a nossa atuação pode mudar histórias.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 24.4: Frase de efeito · PT. 4 (encerramento) -->
+    <section class="slide slide--netflix slide--quote" data-theme="netflix">
+      <div class="quote-stage">
+        <div class="quote-stage__bg" aria-hidden="true"></div>
+        <div class="quote-stage__content">
+          <div class="quote-stage__badge">EP. 21 · MENSAGEM FINAL · PT. 4</div>
+          <h2 class="quote-stage__title quote-stage__title--md">
+            Porque muito mais do que dentes e estética, a odontologia trata de <span class="quote-stage__accent">risco sistêmico real</span>.
+          </h2>
         </div>
       </div>
     </section>
@@ -7251,6 +7716,52 @@
       </div>
     </section>
 
+    <!-- Slide 25: Créditos finais (Netflix · fim de filme) -->
+    <section class="slide slide--netflix slide--credits" data-theme="netflix">
+      <div class="credits-stage">
+        <div class="credits-stage__bg" aria-hidden="true"></div>
+        <div class="credits-stage__wordmark" aria-hidden="true">O Fim</div>
+
+        <span class="credits-stage__badge">
+          <svg width="10" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3v18l4-8 4 8V3h-3l-2 5-2-5H6z"/></svg>
+          Ep. Final · Créditos
+        </span>
+
+        <div class="credits-stage__letterbox credits-stage__letterbox--top" aria-hidden="true"></div>
+        <div class="credits-stage__letterbox credits-stage__letterbox--bottom" aria-hidden="true"></div>
+
+        <div class="credits-stage__frame" role="group" aria-label="Créditos finais da apresentação">
+          <span class="credits-stage__rec">Rec · Fim</span>
+
+          <video class="credits-stage__video" id="creditsVideo"
+                 playsinline preload="metadata" aria-label="Vídeo de créditos finais">
+            <source src="assets/creditos.mp4" type="video/mp4" />
+          </video>
+
+          <div class="credits-stage__controls">
+            <button type="button" class="credits-stage__audio" id="creditsAudioBtn"
+                    aria-label="Desativar áudio dos créditos" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true" id="creditsAudioIcon">
+                <path d="M3 10v4h4l5 4V6L7 10H3z"/>
+                <path d="M14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/>
+                <path d="M16.5 12a4.5 4.5 0 0 0-2.5-4.03v8.06A4.5 4.5 0 0 0 16.5 12z"/>
+              </svg>
+              Som ativo
+            </button>
+          </div>
+        </div>
+
+        <div class="credits-stage__signoff" role="contentinfo">
+          <span>Uma produção <strong>extensionista</strong> · <em>Maio Vermelho</em> · 2026</span>
+        </div>
+
+        <a class="dev-credit dev-credit--credits"
+           href="https://instagram.com/guiohashi"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Desenvolvido por @guiohashi">@guiohashi</a>
+      </div>
+    </section>
+
   </div>
 
   <!-- Overlay fullscreen: abertura TUDUM + player de vídeo -->
@@ -7267,7 +7778,7 @@
 
     <div class="tudum-player" id="tudumPlayer">
       <video id="tudumVideo" playsinline preload="metadata">
-        <source src="assets/campanha.mp4" type="video/mp4" />
+        <source src="assets/campanha-certo.mp4" type="video/mp4" />
       </video>
     </div>
 
@@ -7290,7 +7801,7 @@
   <div class="hud" role="group" aria-label="Controles da apresentação">
     <div class="hud__group">
       <button class="nav-btn nav-btn--icon" id="prevBtn" aria-label="Slide anterior">←</button>
-      <span id="counter" class="hud-counter">1 / 25</span>
+      <span id="counter" class="hud-counter">1 / 26</span>
       <button class="nav-btn nav-btn--icon" id="nextBtn" aria-label="Próximo slide">→</button>
     </div>
     <div class="hud__group hud__group--grow">
@@ -7711,6 +8222,98 @@
           }
         });
         mo.observe(trailerSlide, { attributes: true, attributeFilter: ['class'] });
+      }
+
+      // ================================================================
+      // Slide de créditos finais — autoplay e toggle de áudio
+      // ================================================================
+      const creditsVideo = document.getElementById('creditsVideo');
+      const creditsAudioBtn = document.getElementById('creditsAudioBtn');
+      const creditsSlide = creditsVideo && creditsVideo.closest('.slide');
+
+      function setCreditsAudioButtonState(isOn) {
+        if (!creditsAudioBtn) return;
+        creditsAudioBtn.setAttribute('aria-pressed', String(isOn));
+        creditsAudioBtn.setAttribute(
+          'aria-label',
+          isOn ? 'Desativar áudio dos créditos' : 'Ativar áudio dos créditos'
+        );
+        creditsAudioBtn.innerHTML = creditsAudioBtnMarkup(isOn);
+      }
+
+      function playCreditsWithSound() {
+        if (!creditsVideo) return;
+        try { creditsVideo.currentTime = 0; } catch (e) {}
+        creditsVideo.muted = false;
+        creditsVideo.volume = 1;
+        const p = creditsVideo.play();
+        if (p && p.then) {
+          p.then(() => {
+            setCreditsAudioButtonState(true);
+          }).catch(() => {
+            // Autoplay com som bloqueado: cai de volta para mutado e sinaliza o botão
+            creditsVideo.muted = true;
+            creditsVideo.play().catch(() => {});
+            setCreditsAudioButtonState(false);
+          });
+        }
+      }
+
+      if (creditsVideo && creditsSlide) {
+        const mo = new MutationObserver(() => {
+          if (creditsSlide.classList.contains('active')) {
+            playCreditsWithSound();
+          } else {
+            creditsVideo.pause();
+          }
+        });
+        mo.observe(creditsSlide, { attributes: true, attributeFilter: ['class'] });
+
+        // Ao final dos créditos, volta suavemente para o primeiro slide
+        creditsVideo.addEventListener('ended', function () {
+          if (!creditsSlide.classList.contains('active')) return;
+          try { creditsVideo.pause(); creditsVideo.currentTime = 0; } catch (e) {}
+          creditsVideo.muted = true;
+          setCreditsAudioButtonState(false);
+          goToSlide(0);
+        });
+      }
+
+      function creditsAudioBtnMarkup(isOn) {
+        if (isOn) {
+          return (
+            '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+              '<path d="M3 10v4h4l5 4V6L7 10H3z"/>' +
+              '<path d="M14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/>' +
+              '<path d="M16.5 12a4.5 4.5 0 0 0-2.5-4.03v8.06A4.5 4.5 0 0 0 16.5 12z"/>' +
+            '</svg>' +
+            'Som ativo'
+          );
+        }
+        return (
+          '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+            '<path d="M3 10v4h4l5 4V6L7 10H3z"/>' +
+            '<path d="M16 8l6 6m0-6l-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>' +
+          '</svg>' +
+          'Ativar som'
+        );
+      }
+
+      if (creditsAudioBtn && creditsVideo) {
+        creditsAudioBtn.addEventListener('click', function () {
+          const turnOn = creditsVideo.muted;
+          creditsVideo.muted = !turnOn;
+          if (turnOn) {
+            creditsVideo.volume = 1;
+            creditsVideo.play().catch(() => {});
+          }
+          creditsAudioBtn.setAttribute('aria-pressed', String(turnOn));
+          creditsAudioBtn.setAttribute(
+            'aria-label',
+            turnOn ? 'Desativar áudio dos créditos' : 'Ativar áudio dos créditos'
+          );
+          creditsAudioBtn.innerHTML = creditsAudioBtnMarkup(turnOn);
+        });
       }
 
       updateUI();
